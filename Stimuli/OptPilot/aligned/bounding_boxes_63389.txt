@@ -1,0 +1,4 @@
+Stimuli/OptPilot/aligned/s1/s11.png 57 20 224 222
+Stimuli/OptPilot/aligned/s2/s21.png 59 29 240 250
+Stimuli/OptPilot/aligned/s3/s31.png 34 0 228 240
+Stimuli/OptPilot/aligned/s4/s41.png 46 49 218 239

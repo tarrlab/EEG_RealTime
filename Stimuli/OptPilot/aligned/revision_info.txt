@@ -1,0 +1,5 @@
+arguments: facenet/src/align/align_dataset_mtcnn.py --image_size 182 --margin 44 --gpu_memory_fraction 0.25 Stimuli/OptPilot/raw Stimuli/OptPilot/aligned
+--------------------
+git hash: b'4faf590600f122c3cd2ab3ab3c85bd3bd2d00822'
+--------------------
+b''
