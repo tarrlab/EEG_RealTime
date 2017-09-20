@@ -30,6 +30,7 @@ for i=1:length(fns) %This is the number of objects in the directory
     P=imread(fullfile(picpath,fns(i).name));
     P=P(:,:,1:3);
     Psz=size(P);
+    origPsz=Psz;
     
     % Upsample by factor of 2 in two dimensions
     P2=zeros([2*Psz(1:2),Psz(3)]);
@@ -99,7 +100,11 @@ for i=1:length(fns) %This is the number of objects in the directory
             end;
             [pth randfn] = fileparts(tempname);
             randstr = randfn(27:end);
-            imwrite(uint8(interpIm),fullfile(outpicpath,sprintf('Im_%02d_%02d.%s',i,ind,imgtype)),imgtype);
+
+            % Downsample the image
+            saveIm = imresize(interpIm, origPsz(1:2));
+
+            imwrite(uint8(saveIm),fullfile(outpicpath,sprintf('Im_%02d_%02d.%s',i,ind,imgtype)),imgtype);
             randfn = sprintf('W_%02d_%02d_%s.%s',i,ind,randstr,imgtype); %This is the recoded name of the file
             interpIm(:,:,1)=interp2(double(interpIm(:,:,1)),cy,cx);
             interpIm(:,:,2)=interp2(double(interpIm(:,:,2)),cy,cx);
