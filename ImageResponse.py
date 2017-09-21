@@ -2,7 +2,7 @@
 """
 Created on Wed Sep 20 18:40:08 2017
 
-@author: eeg
+@author: Austin Marcus
 """
 
 #import everything
