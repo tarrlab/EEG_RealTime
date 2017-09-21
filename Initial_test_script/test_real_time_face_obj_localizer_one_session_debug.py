@@ -8,7 +8,7 @@ Most recent working modification: Thur Oct 13 2016
 """
 import sys
 paths = ['C:\\ExperimentData\\YingYang\\tools\\mne-python-master\\',
-         'C:\\FieldTrip\\fieldtrip-20160810\\realtime\\src\\buffer\\python\\'
+         'C:\\FieldTrip\\fieldtrip-20160810\\realtime\\src\\buffer\\python\\',
          'C:\\ExperimentData\\YingYang\\Real_time\\Initial_test_script\\']
 for path0 in paths:
     sys.path.insert(0,path0)    
@@ -173,8 +173,6 @@ while timer1.getTime() < 0:
 mywin.flip()
         
 time.sleep(0.5)
-
-
 
 ########################
 ####load in stimuli#####
