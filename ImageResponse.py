@@ -39,11 +39,11 @@ class ImageResponse:
         ImageResponse.pport = windll.inpoutx64
     
     def send_trigger(self, trig_val):
-        pport.Out32(self.pport_addr, trig_val)   
+        ImageResponse.pport.Out32(self.pport_addr, trig_val)   
     
     # reset parport bits all to 0
     def reset_trigger(self):
-        pport.Out32(self.pport_addr, 0)
+        ImageResponse.pport.Out32(self.pport_addr, 0)
     
     # get recent epochs from FieldTrip buffer
     def get_recent(self):
@@ -51,13 +51,15 @@ class ImageResponse:
        
     def get_image_response(self, im_to_show, code):
         self.reset_trigger()
-        display = visual.ImageStim(win=self.window, image=self.im_to_show, units="pix", size=self.imsize) 
+        display = visual.ImageStim(win=self.window, image=im_to_show, units="pix", size=self.imsize) 
         display.draw()
         self.window.flip()
-        self.send_trigger(self.code)
-        self.reset_trigger()
+        self.send_trigger(code)
         #display image for 500ms
         core.wait(0.5)
+        self.window.flip()
+        core.wait(0.35)
+        self.reset_trigger()
         recent_epochs, recent_event_list = self.get_recent()
         response_data = (recent_epochs, recent_event_list)
         return response_data
