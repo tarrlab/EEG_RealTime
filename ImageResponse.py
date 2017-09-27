@@ -21,9 +21,8 @@ import time
 
 
 class ImageResponse:
-    def __init__(self, im_to_show, code, window, imsize, pport_addr):
-        self.im_to_show = im_to_show
-        self.code = code
+    def __init__(self, codes, window, imsize, pport_addr):
+        self.codes = codes
         self.window = window
         self.imsize = imsize
         self.pport_addr = pport_addr
@@ -34,7 +33,7 @@ class ImageResponse:
         self.rt_client.__enter__()
         # FieldTrip buffer stuff
         self.recent_epochs_obj = biosemi_fieldtrip_recent_epochs(self.rt_client, n_recent_event = 1,
-                                                        trial_tmax = 0.5, event_types = [code])                                              
+                                                        trial_tmax = 0.5, event_types = codes)                                              
         # where to send triggers
         #self.pport_addr = 0xcff8
         ImageResponse.pport = windll.inpoutx64
@@ -50,7 +49,7 @@ class ImageResponse:
     def get_recent(self):
         return self.recent_epochs_obj.get_recent_epochs()
        
-    def get_image_response(self):
+    def get_image_response(self, im_to_show, code):
         self.reset_trigger()
         display = visual.ImageStim(win=self.window, image=self.im_to_show, units="pix", size=self.imsize) 
         display.draw()
