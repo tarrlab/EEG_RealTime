@@ -68,8 +68,10 @@ class BOMaxStim():
         response_data = self.image_response.get_image_response(stimulus, self.stimuli.index(stimulus)+1)
         assert(int(response_data[1][0][1]) == self.stimuli.index(stimulus)+1)
         response_data = response_data[0][0].get_data()
-        #get average of samples 716-820 = 150-200ms post-stimulus
-        avg = np.mean(response_data[0, :128, 716:820])
+        #get min amplitude per sensor for samples 716-820 = 150-200ms post-stimulus
+        min_vals = [np.min(response_data[0, i, 716:820]) for i in range(0,128)]
+        #get mean of min amplitudes between 150-200ms post-stim
+        avg = np.mean(min_vals)
         return avg
 
 
