@@ -6,6 +6,7 @@ from GPyOpt.methods import BayesianOptimization
 import time
 import random, datetime, time, glob, cv2
 from psychopy import visual, core, event, data, gui
+import tkinter as tk
 
 
 from ImageResponse import ImageResponse
@@ -91,7 +92,11 @@ for label, embedding in zip(labels, embeddings_raw):
     label_idx = int(label.split("/")[-1].split(".")[0].split("_")[-1]) - 1
     embeddings[label_idx] = embedding
 
-window = visual.Window([800, 800], monitor="testMonitor", units="deg")
+root = tk.Tk()
+screen_w = root.winfo_screenwidth()
+screen_h = root.winfo_screenheight()
+
+window = visual.Window([screen_w, screen_h], monitor="testMonitor", units="deg")
 pport_addr = 0xcff8
 imsize = 182
 
