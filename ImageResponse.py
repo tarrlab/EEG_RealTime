@@ -37,6 +37,9 @@ class ImageResponse:
         # where to send triggers
         #self.pport_addr = 0xcff8
         ImageResponse.pport = windll.inpoutx64
+        
+    def __enter__(self):
+        
     
     def send_trigger(self, trig_val):
         ImageResponse.pport.Out32(self.pport_addr, trig_val)   
@@ -58,8 +61,9 @@ class ImageResponse:
         #display image for 500ms
         core.wait(0.5)
         self.window.flip()
-        core.wait(0.35)
+        core.wait(0.5)
         self.reset_trigger()
+        #core.wait(0.2)
         recent_epochs, recent_event_list = self.get_recent()
         response_data = (recent_epochs, recent_event_list)
         return response_data
